@@ -114,42 +114,29 @@ def index():
     assert request.method == 'POST' 
 """
 
-# Set the secret key to some random bytes. Keep this really secret!
+# Definir a chave secreta da aplicação
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 @app.route('/')
 def index():
-    # Redireciona para a rota que serve o arquivo index.html
-    return redirect(url_for('serve_index'))
-
-@app.route('/index.html')
-def serve_index():
-    # Renderiza o arquivo index.html que está fora da pasta 'templates'
     return render_template('index.html')
-
-@app.route('/logged')
-def logged():
-    if 'username' in session:
-        return f'Logged in as {session["username"]}'
-    return 'You are not logged in'
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
+        # Simplesmente adiciona o nome de usuário à sessão e redireciona para a página de sucesso
         session['username'] = request.form['username']
-        return redirect(url_for('hello'))
-    return '''
-        <form method="post">
-            <p><input type=text name=username>
-            <p><input type=submit value=Login>
-        </form>
-    '''
+        return redirect(url_for('success'))
+    return render_template('login.html')
+
+@app.route('/success')
+def success():
+    return render_template('hello.html')
 
 @app.route('/logout')
 def logout():
-    # remove the username from the session if it's there
     session.pop('username', None)
     return redirect(url_for('index'))
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)

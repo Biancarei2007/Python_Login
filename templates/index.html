@@ -8,8 +8,7 @@
         <title>Projeto de Python</title>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="/static/style.css" rel="stylesheet" />
-    </head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">    </head>
     <body id="page-top">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
@@ -31,7 +30,14 @@
                 <div class="row gx-4 justify-content-center">
                     <div class="col-lg-8">
                         <p class="lead">Sou a Bianca Rei e este é o meu projeto de Python usando Flask,para um trabalho do curso de Programador de Imformática no módulo de Python Avançado,na Escola Profissional do Fundão.</p>        
-                        <button id="rightButton"> <a href="./templates/login.html">Login</a></button>   
+                        <form action="/login" method="POST">
+                            <a href="{{ url_for('login') }}">Login</a>
+                            <style>
+                                .center {
+                                    text-align: center;
+                                }
+                            </style>
+                        </form>
                     </div>
                 </div>
             </div>

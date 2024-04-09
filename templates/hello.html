@@ -1,2 +1,16 @@
-
-<p><button id="rightButton"> <a href="/index.html">Voltar atrás</a></button></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Successful</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="center">
+        <h1>Login Successful</h1>
+        <p>You have successfully logged in as {{ session.username }}</p>
+        <a href="{{ url_for('index') }}">Voltar</a>
+    </div>
+</body>
+</html>
